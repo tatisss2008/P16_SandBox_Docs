@@ -25,3 +25,5 @@ npx typedoc --entryPointStrategy expand ./src
 npm install --save-dev eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
 npx eslint --init
 
+8.
+npm install --save-dev jest ts-jest supertest @types/jest @types/supertest
