@@ -22,4 +22,6 @@ http://localhost:3000/api-docs/
 7. biblioteca tsdoc 
 npm install typedoc --save-dev
 npx typedoc --entryPointStrategy expand ./src
+npm install --save-dev eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+npx eslint --init
 
