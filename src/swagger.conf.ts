@@ -12,7 +12,7 @@ export const swaggerOption={
             description:"En esta API tenemos la funcionalidad que soporta la operacion de la IPS"
         },
         servers:[{
-            url:"http:localhost:3000",
+            url:"http://localhost:3000",
             description:"Servidor local de documentacion"
         }]
     },

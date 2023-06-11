@@ -13,3 +13,13 @@ npx ts-node src/index.ts
 4.
 npm install swagger-ui-express swagger-jsdoc --save
 npm install --save-dev @types/swagger-ui-express @types/swagger-jsdoc
+
+5.
+http://localhost:3000/api-docs/
+
+6. npm run start
+
+7. biblioteca tsdoc 
+npm install typedoc --save-dev
+npx typedoc --entryPointStrategy expand ./src
+
