@@ -27,3 +27,5 @@ npx eslint --init
 
 8.
 npm install --save-dev jest ts-jest supertest @types/jest @types/supertest
+npm test
+

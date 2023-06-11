@@ -12,7 +12,8 @@ import { setup } from 'swagger-ui-express'
 class App{
      
 	//Atributos
-	public app: any
+	public app: Application
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private server:any
 
 	/**
@@ -51,7 +52,7 @@ class App{
 	}
 
 	public start():void{
-		this.app.listen(
+		this.server=this.app.listen(
 			3000,
 			()=>{ console.log('El servidor esta escuchando en el puerto 3000')}
 		)
