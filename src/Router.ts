@@ -1,4 +1,7 @@
+import swaggerUI from  'swagger-ui-express'
 import express, { Application, Request, Response } from "express"
+import { swaggerOption, swaggerSpec } from "./swagger.conf"
+import { setup } from "swagger-ui-express"
 
 class App{
      
@@ -9,6 +12,12 @@ class App{
     constructor(){
         this.app= express()
         this.app.use(express.json())
+        this.app.use(
+            "/api-docs",
+            swaggerUI.serve,
+            swaggerUI.setup(swaggerSpec)
+        )
+
         this.routes()
     }
 

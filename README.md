@@ -9,3 +9,7 @@ npm install --save-dev @types/node @types/express ts-node
 
 3.Ejecutar
 npx ts-node src/index.ts
+
+4.
+npm install swagger-ui-express swagger-jsdoc --save
+npm install --save-dev @types/swagger-ui-express @types/swagger-jsdoc
