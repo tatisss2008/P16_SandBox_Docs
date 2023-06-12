@@ -36,3 +36,8 @@ npm install prisma --save-dev
 npx prisma init --datasource-provider sqlite 
 npx prisma migrate dev
 npx prisma format
+
+
+10.
+npm install prisma-json-schema-generator --save-dev
+npm run jsonschemas
