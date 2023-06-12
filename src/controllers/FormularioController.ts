@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 
-import * as jsonSchema from '../ json-schema.json' 
+import * as jsonSchema from '../json-schema.json' 
 
 type jsonSchema = Record<string, any>
 

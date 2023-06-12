@@ -4,6 +4,12 @@ import { swaggerOption, swaggerSpec } from './swagger.conf'
 import { setup } from 'swagger-ui-express'
 import PacienteRouter from './routes/PacienteRouter'
 import MedicoRouter from './routes/MedicoRouter'
+import FormularioController from './controllers/FormularioController'
+import FormularioRouter from './routes/FormularioRouter'
+
+//Use cors
+import cors from 'cors'
+
 
 // import { PrismaClient } from '@prisma/client'
 
@@ -38,6 +44,7 @@ class App{
 		)
 		
 		// this.prismaClient= new PrismaClient()
+		this.app.use(cors())
 		this.routes()
 	}
 
@@ -51,6 +58,7 @@ class App{
         
 		this.app.use('/',PacienteRouter)
 		this.app.use('/',MedicoRouter)
+		this.app.use('/',FormularioRouter)
 
 
 		// this.app.get(

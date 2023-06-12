@@ -41,3 +41,7 @@ npx prisma format
 10.
 npm install prisma-json-schema-generator --save-dev
 npm run jsonschemas
+
+11..Importar Cors (error  al conectarse en diferentes rutas)
+npm install cors
+npm install --save-dev @types/cors

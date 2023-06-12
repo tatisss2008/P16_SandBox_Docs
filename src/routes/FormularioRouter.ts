@@ -15,7 +15,7 @@ class FormularioRouter{
 		this.routes()
 	}
 
-	private routes():void{
+	private routes(){
 		this.router.get(
 			'/formulario/:formulario',
 			(req:Request, res:Response)=>{
@@ -27,3 +27,5 @@ class FormularioRouter{
 
 
 }
+
+export default new FormularioRouter().router
