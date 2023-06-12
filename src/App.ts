@@ -2,6 +2,7 @@ import swaggerUI from  'swagger-ui-express'
 import express, { Application, Request, Response } from 'express'
 import { swaggerOption, swaggerSpec } from './swagger.conf'
 import { setup } from 'swagger-ui-express'
+import { PrismaClient } from '@prisma/client'
 
 /**
  *  clase principal de la API. DEfine las rutas de la API
@@ -15,6 +16,7 @@ class App{
 	public app: Application
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private server:any
+	private prismaClient:PrismaClient
 
 	/**
      *  Metodo constructor de la clase
@@ -31,7 +33,8 @@ class App{
 			swaggerUI.serve,
 			swaggerUI.setup(swaggerSpec)
 		)
-
+		
+		this.prismaClient= new PrismaClient()
 		this.routes()
 	}
 
@@ -43,11 +46,49 @@ class App{
 			}
 		) 
         
-		this.app.post(
-			'/paciente',
-			(req:Request, res:Response)=>{
-				res.send('Bienvenidos a typescript Pacientes')
+		this.app.get(
+			'/pacientes',
+			async (req:Request, res:Response)=>{
+				const pacientes=await this.prismaClient.paciente.findMany()
+				res.json(pacientes)
 			}
+		) 
+
+		this.app.post(
+			'/crear_paciente',
+			async (req:Request, res:Response)=>{
+				try {
+					const {
+						cedula,
+						nombre,
+						apellido,
+						fechaNacimiento_,
+						telefono
+					}=req.body
+
+					const fechaNacimiento = new Date(fechaNacimiento_) 
+					const paciente= await this.prismaClient.paciente.create({
+						data:{
+							cedula,
+							nombre,
+							apellido,
+							fechaNacimiento,
+							telefono
+						}
+					}
+					)
+
+				
+					res.json(paciente)	
+				}catch(e:any){
+					res.status(400)
+					res.json({error:e.message})
+				}			
+				//res.json(req.body)
+				// res.send('Crear Pacientes OK')
+
+			}
+			
 		)   
 	}
 

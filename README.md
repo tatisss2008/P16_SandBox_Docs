@@ -18,6 +18,8 @@ npm install --save-dev @types/swagger-ui-express @types/swagger-jsdoc
 http://localhost:3000/api-docs/
 
 6. npm run start
+   npm test
+   npm run dev
 
 7. biblioteca tsdoc 
 npm install typedoc --save-dev
@@ -27,5 +29,10 @@ npx eslint --init
 
 8.
 npm install --save-dev jest ts-jest supertest @types/jest @types/supertest
-npm test
 
+9.
+npm install --save-dev nodemon OR npm install -g nodemon
+npm install prisma --save-dev
+npx prisma init --datasource-provider sqlite 
+npx prisma migrate dev
+npx prisma format
