@@ -7,8 +7,15 @@ import MedicoRouter from './routes/MedicoRouter'
 import FormularioController from './controllers/FormularioController'
 import FormularioRouter from './routes/FormularioRouter'
 
+import passport from 'passport'	
+import dotenv from 'dotenv'
+dotenv.config()
+import rutas_auth from  './routes/rutas_autorizacion'
+import miEstrategia from './config/passport'
+
 //Use cors
 import cors from 'cors'
+
 
 
 // import { PrismaClient } from '@prisma/client'
@@ -27,6 +34,9 @@ class App{
 	private server:any
 	// private prismaClient:PrismaClient
 
+
+	
+
 	/**
      *  Metodo constructor de la clase
      */
@@ -41,14 +51,21 @@ class App{
 			'/api-docs',
 			swaggerUI.serve,
 			swaggerUI.setup(swaggerSpec)
-		)
-		
+		)		
+	
 		// this.prismaClient= new PrismaClient()
 		this.app.use(cors())
 		this.routes()
 	}
 
 	private routes():void{
+
+		this.app.use('/auth',rutas_auth)
+
+		//Proteger las rutas siguientes
+		passport.use(miEstrategia)
+		this.app.use(passport.initialize())
+
 		this.app.get(
 			'/',
 			(req:Request, res:Response)=>{
@@ -56,9 +73,16 @@ class App{
 			}
 		) 
         
-		this.app.use('/',PacienteRouter)
-		this.app.use('/',MedicoRouter)
-		this.app.use('/',FormularioRouter)
+
+		//implementar las rutas
+		this.app.use('/', passport.authenticate('jwt',{session:false}), PacienteRouter)
+		this.app.use('/', passport.authenticate('jwt',{session:false}), MedicoRouter)
+		this.app.use('/', passport.authenticate('jwt',{session:false}), FormularioRouter)
+
+
+		// this.app.use('/',PacienteRouter)
+		//this.app.use('/',MedicoRouter)
+		//this.app.use('/',FormularioRouter)
 
 
 		// this.app.get(
